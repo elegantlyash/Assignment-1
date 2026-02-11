@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔥 SMART EVENT DASHBOARD</h1>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-number" id="totalEvents">0</div>
+                <div class="stat-label">Total Events</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="upcomingEvents">0</div>
+                <div class="stat-label">Upcoming</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pastEvents">0</div>
+                <div class="stat-label">Past Events</div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <div id="successMessage"></div>
+                <h2>➕ Add New Event</h2>
+                <form id="b1">
+
+                    <label>Event Name</label>
+                    <input type="text" id="eName" placeholder="Enter your event name" required>
+
+                    <label>Event Date</label>
+                    <input type="date" id="eDate" required>
+
+                    <label>Category</label>
+                    <select id="eOpt" required>
+                        <option value="a">Work</option>
+                        <option value="b">Personal</option>
+                        <option value="c">Social</option>
+                        <option value="d">Other</option>
+                    </select>
+
+                    <label>Description</label>
+                    <textarea id="eDis" placeholder="Add event details..."></textarea>
+
+                    <input type="submit" value="Add Event">
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>📋 Your Events</h2>
+                <div class="event-list-container">
+                    <div id="eventList">
+                        <div class="no-events">No events yet. Start by adding your first event! ✨</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
