@@ -4,65 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Smart Event Dashboard</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div class="container">
-        <h1>🔥 SMART EVENT DASHBOARD</h1>
-
-        <div class="stats-bar">
-            <div class="stat-card">
-                <div class="stat-number" id="totalEvents">0</div>
-                <div class="stat-label">Total Events</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="upcomingEvents">0</div>
-                <div class="stat-label">Upcoming</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="pastEvents">0</div>
-                <div class="stat-label">Past Events</div>
-            </div>
-        </div>
+        <h1>🔥 Smart Event Dashboard</h1>
 
         <div class="dashboard">
-            <div class="card">
-                <div id="successMessage"></div>
-                <h2>➕ Add New Event</h2>
-                <form id="b1">
+            <div class="form-section">
+                <h2>Add New Event</h2>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title:</label>
+                        <input type="text" id="eventTitle" required>
+                    </div>
 
-                    <label>Event Name</label>
-                    <input type="text" id="eName" placeholder="Enter your event name" required>
+                    <div class="form-group">
+                        <label for="eventDate">Event Date:</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
 
-                    <label>Event Date</label>
-                    <input type="date" id="eDate" required>
+                    <div class="form-group">
+                        <label for="eventCategory">Category:</label>
+                        <select id="eventCategory" required>
+                            <option value="Conference">Conference</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Meetup">Meetup</option>
+                            <option value="Webinar">Webinar</option>
+                            <option value="Social">Social</option>
+                        </select>
+                    </div>
 
-                    <label>Category</label>
-                    <select id="eOpt" required>
-                        <option value="a">Work</option>
-                        <option value="b">Personal</option>
-                        <option value="c">Social</option>
-                        <option value="d">Other</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="eventDescription">Description:</label>
+                        <textarea id="eventDescription" required></textarea>
+                    </div>
 
-                    <label>Description</label>
-                    <textarea id="eDis" placeholder="Add event details..."></textarea>
-
-                    <input type="submit" value="Add Event">
+                    <button type="submit">Add Event</button>
                 </form>
             </div>
 
-            <div class="card">
-                <h2>📋 Your Events</h2>
-                <div class="event-list-container">
-                    <div id="eventList">
-                        <div class="no-events">No events yet. Start by adding your first event! ✨</div>
-                    </div>
+            <div class="events-section">
+                <h2>My Events</h2>
+                <div class="controls">
+                    <button id="clearAllBtn">Clear All Events</button>
+                    <button id="addSampleBtn">Add Sample Events</button>
+                </div>
+                <div id="eventContainer">
+                    <div class="empty-state">No events yet. Add your first event!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>DOM Manipulation Demo</h2>
+            <div class="demo-box">
+                <div id="demoContent" class="demo-content">
+                    Press any key to see the difference!
                 </div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
+</html>
