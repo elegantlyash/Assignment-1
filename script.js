@@ -1,23 +1,27 @@
-const eventForm = document.getElementById("b1");
-const eventName = document.getElementById("eName");
-const eventDate = document.getElementById("eDate");
-const eventCategory = document.getElementById("eOpt");
-const eventDescription = document.getElementById("eDis");
-const eventContainer = document.getElementById("eventList");
+const eventForm = document.getElementById("eventForm");
+const eventTitle = document.getElementById("eventTitle");
+const eventDate = document.getElementById("eventDate");
+const eventCategory = document.getElementById("eventCategory");
+const eventDescription = document.getElementById("eventDescription");
+const clearAllBtn = document.getElementById("clearAllBtn");
+const addSampleBtn = document.getElementById("addSampleBtn");
+const eventContainer = document.getElementById("eventContainer");
+const demoContent = document.getElementById("demoContent");
 let sampleEvents = [
     {
-        name: "Web Dev Workshop",
+        title: "Web Dev Workshop",
         date: "2026-06-04",
-        category: "Work",
-        description: "Hands-on JavaScript session"
+        category: "Workshop",
+        description: "Learn JavaScript with hands-on practice."
     },
     {
-        name: "Birthday Party",
+        title: "Tech Conference",
         date: "2026-07-10",
-        category: "Personal",
-        description: "Celebrate with friends 🎉"
+        category: "Conference",
+        description: "Annual technology networking event."
     }
 ];
+
 
 function createEventCard(eventData) {
 
@@ -25,30 +29,52 @@ function createEventCard(eventData) {
     card.classList.add("event-card");
 
     card.innerHTML = `
-        <h3>${eventData.name}</h3>
+        <button class="delete-btn">X</button>
+        <h3>${eventData.title}</h3>
         <div>${eventData.date}</div>
         <span>${eventData.category}</span>
         <p>${eventData.description}</p>
     `;
 
+    // Delete button functionality
+    const deleteBtn = card.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", function () {
+        card.remove();
+        checkEmptyState();
+    });
+
     return card;
 }
+
+
+
 function addEvent(eventData) {
 
-    const emptyState = document.querySelector(".no-events");
+    // If empty state is present then remove it
+    const emptyState = document.querySelector(".empty-state");
     if (emptyState) emptyState.remove();
 
     eventContainer.appendChild(createEventCard(eventData));
 }
-sampleEvents.forEach(function(event) {
-    addEvent(event);
-});
-eventForm.addEventListener("submit", function(event) {
+
+
+
+
+function checkEmptyState() {
+    if (eventContainer.children.length === 0) {
+        eventContainer.innerHTML =
+            `<div class="empty-state">
+                No events yet. Add your first event!
+            </div>`;
+    }
+}
+
+eventForm.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
     const eventData = {
-        name: eventName.value,
+        title: eventTitle.value,
         date: eventDate.value,
         category: eventCategory.value,
         description: eventDescription.value
@@ -57,4 +83,27 @@ eventForm.addEventListener("submit", function(event) {
     addEvent(eventData);
 
     eventForm.reset();
+});
+
+
+
+clearAllBtn.addEventListener("click", function () {
+    eventContainer.innerHTML = "";
+    checkEmptyState();
+});
+
+
+
+
+addSampleBtn.addEventListener("click", function () {
+    sampleEvents.forEach(function (event) {
+        addEvent(event);
+    });
+});
+
+
+
+document.addEventListener("keydown", function () {
+    demoContent.textContent = "You pressed a key! 🎉";
+    demoContent.style.backgroundColor = "lightblue";
 });
