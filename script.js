@@ -1,3 +1,4 @@
+// Target the HTML elements (form, inputs, buttons)
 const eventForm = document.getElementById("eventForm");
 const eventTitle = document.getElementById("eventTitle");
 const eventDate = document.getElementById("eventDate");
@@ -7,6 +8,8 @@ const clearAllBtn = document.getElementById("clearAllBtn");
 const addSampleBtn = document.getElementById("addSampleBtn");
 const eventContainer = document.getElementById("eventContainer");
 const demoContent = document.getElementById("demoContent");
+
+// Take 2 sample events for demo
 let sampleEvents = [
     {
         title: "Web Dev Workshop",
@@ -21,8 +24,7 @@ let sampleEvents = [
         description: "Annual technology networking event."
     }
 ];
-
-
+// Create event card (stores user data inside div)
 function createEventCard(eventData) {
 
     const card = document.createElement("div");
@@ -35,19 +37,15 @@ function createEventCard(eventData) {
         <span>${eventData.category}</span>
         <p>${eventData.description}</p>
     `;
-
     // Delete button functionality
     const deleteBtn = card.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", function () {
         card.remove();
         checkEmptyState();
     });
-
     return card;
 }
-
-
-
+// Add the created event inside container
 function addEvent(eventData) {
 
     // If empty state is present then remove it
@@ -57,8 +55,7 @@ function addEvent(eventData) {
     eventContainer.appendChild(createEventCard(eventData));
 }
 
-
-
+// Check if container is empty
 
 function checkEmptyState() {
     if (eventContainer.children.length === 0) {
@@ -68,6 +65,7 @@ function checkEmptyState() {
             </div>`;
     }
 }
+// Handle form submit
 
 eventForm.addEventListener("submit", function (event) {
 
@@ -84,26 +82,22 @@ eventForm.addEventListener("submit", function (event) {
 
     eventForm.reset();
 });
-
-
+// Clear All Events
 
 clearAllBtn.addEventListener("click", function () {
     eventContainer.innerHTML = "";
     checkEmptyState();
 });
-
-
-
+// Add Sample Events
 
 addSampleBtn.addEventListener("click", function () {
     sampleEvents.forEach(function (event) {
         addEvent(event);
     });
 });
+// DOM Manipulation Demo
 
-
-
-document.addEventListener("keydown", function () {
-    demoContent.textContent = "You pressed a key! 🎉";
+document.addEventListener("keydown", function (e) {
+    demoContent.textContent = "You pressed a key! 🎉"+ e.key;
     demoContent.style.backgroundColor = "lightblue";
 });
